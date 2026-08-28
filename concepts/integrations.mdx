@@ -1,5 +1,5 @@
 ---
-title: "Connecting Apps with AetherFlow Integrations"
+title: "App Integrations: Connecting Your Tools to AetherFlow"
 sidebarTitle: "Integrations"
 description: "Learn how AetherFlow integrations work, how to connect your apps securely, and how to build a healthy integration strategy for your team."
 ---
@@ -46,16 +46,16 @@ Connecting a new application takes only a few minutes. Follow these steps to add
 Every integration requires you to authorize a set of permissions on the connected app. AetherFlow takes a least-privilege approach: it requests only the permissions needed to support the actions available within that integration. You should apply the same scrutiny when configuring each connection.
 
 <CardGroup cols={2}>
-  <Card title="Review Before You Authorize" icon="magnifying-glass">
+  <Card title="Review Before You Authorize" icon="magnifying-glass" href="/concepts/integrations#permissions-and-security">
     Read the permissions list carefully before completing an integration. If you only need AetherFlow to read data from an app, confirm that no write permissions are being requested before you proceed.
   </Card>
-  <Card title="OAuth Security" icon="lock">
+  <Card title="OAuth Security" icon="lock" href="/concepts/integrations#permissions-and-security">
     Most integrations use OAuth for authorization, meaning your credentials are handled entirely by the connected app — not stored by AetherFlow. You can revoke access at any time from within the connected app's settings.
   </Card>
-  <Card title="Audit Active Connections" icon="shield-check">
+  <Card title="Audit Active Connections" icon="shield-check" href="/concepts/integrations#permissions-and-security">
     Periodically open the Integrations area and audit your active connections. Remove any apps that are no longer part of active workflows to keep your integration surface area as small as possible.
   </Card>
-  <Card title="Role-Based Access" icon="users">
+  <Card title="Role-Based Access" icon="users" href="/concepts/integrations#permissions-and-security">
     Use AetherFlow's role-based access controls to limit which team members can add, edit, or remove integrations. Reserve that permission for account administrators or designated operations owners.
   </Card>
 </CardGroup>

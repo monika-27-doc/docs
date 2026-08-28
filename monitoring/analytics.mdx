@@ -1,5 +1,5 @@
 ---
-title: "Monitor Workflow Performance with Analytics"
+title: "Monitor Workflow Performance with AetherFlow Analytics"
 sidebarTitle: "Analytics"
 description: "Track execution history, key performance metrics, and improvement trends to keep your AetherFlow automations reliable and efficient."
 ---
@@ -27,16 +27,16 @@ Each log entry shows the trigger timestamp, the status of every step, any output
 AetherFlow tracks four core metrics for every workflow. Review them regularly to understand the health of your automations at a glance.
 
 <CardGroup cols={2}>
-  <Card title="Success Rate" icon="circle-check">
+  <Card title="Success Rate" icon="circle-check" href="/monitoring/analytics#success-rate">
     The percentage of executions that completed without errors. A declining success rate is the earliest signal that something in your workflow or a connected integration needs attention.
   </Card>
-  <Card title="Average Run Time" icon="clock">
+  <Card title="Average Run Time" icon="clock" href="/monitoring/analytics#average-run-time">
     The mean duration from trigger to completion across recent executions. Watch for gradual increases — they often indicate a slow external API, a growing data payload, or an inefficient step.
   </Card>
-  <Card title="Failure Count" icon="circle-xmark">
+  <Card title="Failure Count" icon="circle-xmark" href="/monitoring/analytics#failure-count">
     The total number of failed executions within a selected time window. Use this alongside success rate to understand whether failures are isolated incidents or a systematic problem.
   </Card>
-  <Card title="Recurring Bottlenecks" icon="gauge-high">
+  <Card title="Recurring Bottlenecks" icon="gauge-high" href="/monitoring/analytics#recurring-bottlenecks">
     Steps that consistently take longer than others, or that fail repeatedly, are flagged as bottlenecks. Resolving bottlenecks improves both speed and reliability for every future run.
   </Card>
 </CardGroup>

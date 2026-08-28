@@ -1,5 +1,5 @@
 ---
-title: "Understanding Workflows in AetherFlow"
+title: "Understanding Workflows in AetherFlow — Core Concepts"
 sidebarTitle: "Workflows"
 description: "Learn what workflows are, how they're structured, and how AetherFlow turns your plain-language descriptions into powerful automations."
 ---
@@ -54,16 +54,16 @@ For example, a contract-review workflow might branch based on deal size: contrac
 Every step in a workflow can fail — an API might be temporarily unavailable, a required field might be missing, or a downstream service might return an unexpected response. AetherFlow lets you define fallback behavior at the step level so a single failure does not silently break the rest of your automation.
 
 <CardGroup cols={2}>
-  <Card title="Retry Logic" icon="arrows-rotate">
+  <Card title="Retry Logic" icon="arrows-rotate" href="/concepts/workflows#error-handling-and-resilience">
     Configure a step to automatically retry on failure, with a delay between attempts. This handles transient errors — like brief API outages — without requiring any manual intervention.
   </Card>
-  <Card title="Fallback Actions" icon="right-left">
+  <Card title="Fallback Actions" icon="right-left" href="/concepts/workflows#error-handling-and-resilience">
     Define an alternative action to take when a step fails. For example, if a Slack notification fails to send, fall back to sending an email to the same recipient.
   </Card>
-  <Card title="Stop and Alert" icon="bell">
+  <Card title="Stop and Alert" icon="bell" href="/concepts/workflows#error-handling-and-resilience">
     Halt the workflow at a failed step and send an alert to a designated owner. Use this for critical steps where proceeding on a failure would produce incorrect or harmful results.
   </Card>
-  <Card title="Execution Logs" icon="list-check">
+  <Card title="Execution Logs" icon="list-check" href="/concepts/workflows#error-handling-and-resilience">
     Review detailed logs for every workflow run to identify which step failed, what data it received, and what error was returned. Logs make it straightforward to diagnose and fix recurring issues.
   </Card>
 </CardGroup>
