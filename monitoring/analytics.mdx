@@ -1,0 +1,62 @@
+---
+title: "Monitor Workflow Performance with Analytics"
+sidebarTitle: "Analytics"
+description: "Track execution history, key performance metrics, and improvement trends to keep your AetherFlow automations reliable and efficient."
+---
+
+AetherFlow's analytics dashboard gives you a clear, real-time picture of how your workflows are performing. Whether you want to confirm that a critical automation ran successfully, spot recurring failures, or understand where time is being spent, the analytics tools surface the data you need to act with confidence.
+
+## Execution History and Run Logs
+
+Every workflow execution — completed, failed, or still in progress — is captured in the run log. Use the run log to audit what happened, when it happened, and how long each step took.
+
+To access the run log for a workflow:
+
+1. Open the workflow in the AetherFlow editor.
+2. Click the **Runs** tab in the right-hand panel.
+3. Select any execution entry to expand its full step-by-step log.
+
+Each log entry shows the trigger timestamp, the status of every step, any output data passed between steps, and the final outcome. In-progress runs update in real time so you can monitor long-running automations as they execute.
+
+<Note>
+  Run logs are retained according to your plan's data retention policy. Enterprise plans include extended log retention and exportable audit logs.
+</Note>
+
+## Key Performance Metrics
+
+AetherFlow tracks four core metrics for every workflow. Review them regularly to understand the health of your automations at a glance.
+
+<CardGroup cols={2}>
+  <Card title="Success Rate" icon="circle-check">
+    The percentage of executions that completed without errors. A declining success rate is the earliest signal that something in your workflow or a connected integration needs attention.
+  </Card>
+  <Card title="Average Run Time" icon="clock">
+    The mean duration from trigger to completion across recent executions. Watch for gradual increases — they often indicate a slow external API, a growing data payload, or an inefficient step.
+  </Card>
+  <Card title="Failure Count" icon="circle-xmark">
+    The total number of failed executions within a selected time window. Use this alongside success rate to understand whether failures are isolated incidents or a systematic problem.
+  </Card>
+  <Card title="Recurring Bottlenecks" icon="gauge-high">
+    Steps that consistently take longer than others, or that fail repeatedly, are flagged as bottlenecks. Resolving bottlenecks improves both speed and reliability for every future run.
+  </Card>
+</CardGroup>
+
+## Reading Your Analytics Dashboard
+
+The analytics dashboard aggregates metrics across all your workflows or lets you filter down to a single automation. Use the time-range selector to compare performance week-over-week or month-over-month.
+
+- **Trend lines** show how success rate and average run time change over time.
+- **Failure heatmaps** highlight the days or hours when failures cluster, which can reveal patterns tied to external system maintenance windows or peak load times.
+- **Step-level breakdowns** let you drill into individual workflow steps to see exactly where time and errors are concentrated.
+
+<Tip>
+  Review performance trends weekly rather than only reacting to individual failures. A gradual upward drift in average run time often precedes outright failures — catching it early lets you optimize a step or renegotiate API rate limits before users are impacted. Use the **Compare** view to set a baseline and measure the effect of any changes you make.
+</Tip>
+
+## Continuous Improvement
+
+Analytics are most valuable when you act on them in a regular improvement cycle. After reviewing your metrics, identify the one or two workflows with the lowest success rates or highest run times and treat them as your improvement priorities.
+
+Start by exporting the run log for a problematic workflow and looking for patterns: do failures spike at a particular time? Do they always occur at the same step? Does average run time increase as your data volume grows? The answers point directly to the fix — whether that's adding retry logic, splitting a large workflow into smaller ones, or switching to a more reliable integration.
+
+Once you apply a change, use the analytics dashboard to confirm the improvement. Compare success rate and average run time before and after your change to validate that it had the intended effect, and continue monitoring to ensure the improvement holds over time.

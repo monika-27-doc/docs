@@ -1,0 +1,139 @@
+---
+title: "Workflow Triggers: Events, Schedules, and More"
+sidebarTitle: "Triggers"
+description: "Discover how AetherFlow workflow triggers work — from real-time app events and recurring schedules to on-demand manual runs."
+---
+
+A trigger is the starting point of every workflow. Before AetherFlow can execute a single action, something has to tell it to begin — and that something is the trigger. Choosing the right trigger type ensures your automation runs at exactly the right moment, whether that's the instant a customer submits a form, every morning at 9 a.m., or whenever a team member decides to kick it off manually.
+
+## How Triggers Work
+
+When you create or edit a workflow, the first thing you configure is the trigger. AetherFlow monitors the source you specify — an integrated app, an internal clock, or a manual action — and starts the workflow run as soon as the defined condition is met. The data captured at trigger time (such as the contents of a new record or the timestamp of the scheduled run) is passed into the first step and is available to every subsequent action in the workflow.
+
+<Tabs>
+  <Tab title="Event-Based">
+    ## Event-Based Triggers
+
+    Event-based triggers fire in real time when something specific happens inside a connected application. This is the most common trigger type — it lets your workflows react immediately to activity across your business tools.
+
+    **How it works:** AetherFlow listens for the event you define on the connected app. The moment that event occurs, AetherFlow captures the associated data and starts the workflow run.
+
+    **Common examples:**
+    - A new lead is created in your CRM
+    - A support ticket is marked as urgent
+    - A payment is received in your billing platform
+    - A file is uploaded to a shared folder
+    - A form is submitted on your website
+
+    <Steps>
+      <Step title="Choose a connected app">
+        Select the integration you want to monitor. The app must already be connected in your Integrations area before it can be used as a trigger source.
+      </Step>
+      <Step title="Select the event">
+        Pick the specific event within that app — for example, "New Contact Created" or "Deal Stage Changed." AetherFlow surfaces the events supported by each integration.
+      </Step>
+      <Step title="Apply filters (optional)">
+        Narrow the trigger so it only fires for records that match certain criteria. For example, trigger only when a new deal is created with a value above a set threshold.
+      </Step>
+      <Step title="Map the trigger data">
+        Review the data fields AetherFlow captures from the event. These fields — such as contact name, email address, or deal amount — are available as variables in every downstream action.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Use trigger filters to keep your workflows focused. A workflow that runs on every new contact will execute far more often than one filtered to contacts from a specific source — and more focused workflows are easier to monitor and debug.
+    </Tip>
+  </Tab>
+
+  <Tab title="Scheduled">
+    ## Scheduled Triggers
+
+    Scheduled triggers run your workflow automatically at a recurring interval you define — hourly, daily, weekly, or on a custom cron schedule. Use them for tasks that need to happen on a predictable cadence rather than in response to a specific event.
+
+    **How it works:** AetherFlow's internal scheduler fires the workflow at the interval you configure. There is no external event involved — the passage of time is the trigger. Each run starts with the current timestamp and any static data you configure.
+
+    **Common examples:**
+    - Generate and send a daily sales summary every morning
+    - Sync records between two systems every hour
+    - Archive completed tasks every Sunday night
+    - Send a weekly digest email to your team each Monday at 8 a.m.
+
+    <Steps>
+      <Step title="Choose 'Schedule' as the trigger type">
+        In the trigger configuration panel, select **Schedule** from the list of trigger options.
+      </Step>
+      <Step title="Set the interval">
+        Choose from preset intervals — **Hourly**, **Daily**, or **Weekly** — or enter a custom cron expression for more precise control over timing.
+      </Step>
+      <Step title="Set the start time and timezone">
+        Specify the time of day the workflow should first run and the timezone it should respect. AetherFlow uses the timezone you set to calculate all future run times.
+      </Step>
+      <Step title="Configure run behavior">
+        Decide whether missed runs (for example, if the workflow was paused during a scheduled window) should execute immediately when the workflow is re-enabled, or be skipped entirely.
+      </Step>
+    </Steps>
+
+    <Info>
+      Scheduled workflows do not receive external event data at trigger time. If your workflow needs to act on specific records, include a step early in the flow that queries the relevant data from a connected app.
+    </Info>
+
+    <Warning>
+      Avoid scheduling high-frequency workflows (for example, every minute) unless your use case genuinely requires it. Frequent runs consume more of your monthly execution quota and can produce noisy logs that are harder to review.
+    </Warning>
+  </Tab>
+
+  <Tab title="Manual">
+    ## Manual Triggers
+
+    Manual triggers give a person explicit control over when a workflow runs. Instead of firing automatically in response to an event or a schedule, the workflow waits until a team member initiates it — either from the AetherFlow interface or via a shareable trigger link.
+
+    **How it works:** AetherFlow makes the workflow available to be run on demand. The person initiating the run can optionally provide input values (such as a customer ID or a message) that the workflow uses as its starting data.
+
+    **Common examples:**
+    - Run an onboarding checklist when a new team member joins
+    - Trigger a one-off data migration on demand
+    - Kick off a client-specific report generation process
+    - Test a workflow in a real environment before scheduling it
+
+    <Steps>
+      <Step title="Choose 'Manual' as the trigger type">
+        In the trigger configuration panel, select **Manual** from the list of trigger options.
+      </Step>
+      <Step title="Define input fields (optional)">
+        Add any fields you want the person initiating the run to fill in. For example, a "Customer ID" field that the workflow uses to look up the right record before taking action.
+      </Step>
+      <Step title="Set access permissions">
+        Use role-based access controls to specify which team members or roles are allowed to trigger this workflow manually. This keeps sensitive automations from being run by the wrong people.
+      </Step>
+      <Step title="Share the trigger link (optional)">
+        Generate a shareable trigger link that lets authorized users start the workflow from outside the main AetherFlow interface — for example, from a bookmark, an internal dashboard, or a Slack message.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Manual triggers are an excellent way to test a new workflow against real data before converting it to an event-based or scheduled trigger. Run it manually a few times, confirm the outputs are correct, and then switch the trigger type when you're ready to automate fully.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Choosing the Right Trigger
+
+Not sure which trigger type fits your use case? Use this as a starting point:
+
+| If you want the workflow to run… | Use this trigger type |
+|---|---|
+| The moment something happens in an app | **Event-based** |
+| On a predictable, recurring cadence | **Scheduled** |
+| Only when a person decides to start it | **Manual** |
+| For testing before full automation | **Manual** (then switch later) |
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Workflows" icon="diagram-project" href="/concepts/workflows">
+    Revisit the full workflow structure — triggers, steps, conditions, and error handling — in one place.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/concepts/integrations">
+    Set up the app connections your event-based triggers depend on.
+  </Card>
+</CardGroup>

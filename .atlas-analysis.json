@@ -1,13 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "AetherFlow",
+  "projectType": "saas",
+  "projectName": "AetherFlow",
+  "projectDescription": "AetherFlow is an AI-powered workflow automation platform that lets users describe automations in plain language and turns them into executable, integrated workflows.",
   "theme": "almond",
-  "colors": {
-    "primary": "#ef7025",
-    "light": "#eec9bc",
-    "dark": "#4fa1ab"
-  },
-  "favicon": "/favicon.svg",
+  "primaryColor": "#ef7025",
+  "lightColor": "#eec9bc",
+  "darkColor": "#4fa1ab",
   "navigation": {
     "tabs": [
       {
@@ -64,5 +62,22 @@
         ]
       }
     ]
-  }
+  },
+  "keyFeatures": [
+    "Natural-language workflow builder — describe automations in plain English",
+    "AI-powered step generation from user prompts",
+    "Third-party app integrations (Slack, Microsoft Teams, Discord, and more)",
+    "Conditional branching and scheduled triggers",
+    "Role-based access controls and team collaboration",
+    "Execution history, run logs, and performance analytics",
+    "Enterprise governance, audit controls, and compliance tooling"
+  ],
+  "publicApiSurface": [
+    "Workflow CRUD APIs",
+    "Trigger configuration endpoints",
+    "Integration authorization flow",
+    "Execution logs and analytics endpoints",
+    "User and team management endpoints",
+    "API credential generation via account settings"
+  ]
 }

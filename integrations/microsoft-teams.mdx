@@ -1,0 +1,82 @@
+---
+title: "Connect Microsoft Teams to AetherFlow"
+sidebarTitle: "Microsoft Teams"
+description: "Authorize the Microsoft Teams integration to post channel messages, send Adaptive Cards, and trigger automations from meeting and conversation events."
+---
+
+Connecting Microsoft Teams to AetherFlow lets your workflows communicate directly with your organization's Teams environment — posting updates to channels, delivering richly formatted Adaptive Cards, and reacting to events like new meetings or incoming messages. If your team lives in Teams, this integration ensures that automation results surface exactly where your colleagues are already paying attention. Follow the steps below to authorize the connection and start building.
+
+## Connect Microsoft Teams to AetherFlow
+
+<Steps>
+  <Step title="Open the Integrations catalog">
+    In the AetherFlow sidebar, click **Integrations**, then search for **Microsoft Teams** and select its tile.
+  </Step>
+  <Step title="Click Connect">
+    On the Microsoft Teams integration page, click **Connect**. AetherFlow will redirect you to Microsoft's OAuth authorization screen.
+  </Step>
+  <Step title="Sign in with your Microsoft account">
+    If you're not already signed in, enter your Microsoft 365 credentials. Make sure you sign in with an account that has access to the Teams environment you want to automate.
+  </Step>
+  <Step title="Review and approve permissions">
+    Microsoft will display the permissions AetherFlow is requesting — such as the ability to send channel messages and read team and channel metadata. Review the list, then click **Accept** to grant access.
+  </Step>
+  <Step title="Configure the connection">
+    After returning to AetherFlow, give the connection a recognizable name (for example, *Contoso – Microsoft Teams*) and confirm the organization tenant shown is correct. If you manage multiple tenants, you can repeat this process to add additional connections.
+  </Step>
+  <Step title="Test the connection">
+    Click **Send Test Message**, select a team and channel, and verify the message appears in Teams. A successful test confirms the integration is ready to use.
+  </Step>
+</Steps>
+
+<Note>
+  Microsoft 365 administrators may need to grant tenant-wide admin consent before AetherFlow can post to Teams on behalf of users in your organization. If you see a permission error during authorization, ask your Microsoft 365 admin to approve the AetherFlow app in the **Azure Active Directory → Enterprise Applications** portal.
+</Note>
+
+## Common Workflow Examples
+
+Once Teams is connected, you can reference it in any workflow you describe to AetherFlow. Here are the most popular ways teams use the Microsoft Teams integration.
+
+### Post to a Channel
+
+Send plain-text or formatted messages to any team channel. Use this to announce completed automations, relay incoming data from other connected apps, or broadcast time-sensitive alerts.
+
+**Example prompt:** *"When a new high-priority ticket is created in our helpdesk, post a message to the #it-support channel in Teams with the ticket title and a link."*
+
+### Send Adaptive Cards
+
+Adaptive Cards are richly formatted, interactive messages that can display tables, buttons, images, and input fields inside Teams. Use them to present structured data — such as approval requests, status summaries, or report previews — in a visually clear format.
+
+**Example prompt:** *"When a purchase order exceeds $10,000, send an Adaptive Card to the #finance-approvals channel showing the vendor name, amount, and an Approve / Reject button."*
+
+### Trigger on Meeting Events
+
+Use Teams meeting events — such as a meeting being scheduled or a recording becoming available — as triggers that launch downstream workflow steps in AetherFlow.
+
+**Example prompt:** *"When a Teams meeting recording is ready, send the transcript link to the meeting organizer via email and save a copy to SharePoint."*
+
+<Tip>
+  If your organization uses Teams channels for structured, departmental communication, align your AetherFlow workflow outputs to the same channel structure. This makes automated messages feel native to your existing collaboration patterns rather than disruptive.
+</Tip>
+
+## Troubleshooting
+
+<Accordion title="I get a permission error when authorizing the integration">
+  Your Microsoft 365 tenant may require admin consent before third-party apps can access Teams data. Contact your Microsoft 365 administrator and ask them to approve the AetherFlow enterprise application in **Azure Active Directory → Enterprise Applications → Admin Consent**. Once admin consent is granted, retry the authorization flow.
+</Accordion>
+
+<Accordion title="AetherFlow can't see the team or channel I want to use">
+  AetherFlow can only access teams and channels that the authorizing user is a member of. If a team or channel isn't appearing, confirm that your Microsoft account has been added as a member in Teams. For private channels, membership must be explicit — being a member of the parent team is not sufficient.
+</Accordion>
+
+<Accordion title="Adaptive Cards aren't rendering correctly in Teams">
+  Adaptive Cards must conform to the schema version supported by your Teams client. If a card isn't rendering as expected, open the workflow's action settings in AetherFlow and check the card schema version. Upgrading or downgrading the schema version to match your Teams environment usually resolves rendering issues. You can validate your card JSON at [adaptivecards.io/designer](https://adaptivecards.io/designer).
+</Accordion>
+
+<Accordion title="Meeting event triggers aren't firing">
+  Confirm that the Microsoft account used to authorize the integration has calendar and meeting access in your Microsoft 365 tenant. Additionally, check that the workflow is set to **Active** and review the execution log under **Workflows → [Your Workflow] → Logs** for any error messages. If events still aren't firing, disconnect and reconnect the Teams integration to refresh the authorization token.
+</Accordion>
+
+<Accordion title="My Teams connection shows as inactive or expired">
+  Microsoft 365 OAuth tokens expire periodically or when a user's password changes. To restore the connection, navigate to **Integrations → Connected Apps**, disconnect the Microsoft Teams connection, and reauthorize it. If your organization enforces conditional access policies, ensure AetherFlow is listed as an approved application with your IT team.
+</Accordion>

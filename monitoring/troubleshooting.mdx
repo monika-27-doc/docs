@@ -1,0 +1,98 @@
+---
+title: "Troubleshoot Failed and Slow Workflows"
+sidebarTitle: "Troubleshooting"
+description: "Use AetherFlow's execution logs and step-level diagnostics to identify, understand, and resolve failed or slow workflow executions."
+---
+
+When a workflow fails or starts running slower than expected, AetherFlow's execution logs give you everything you need to pinpoint the problem. Rather than guessing at the cause, you can trace the exact step where execution stopped, read the error context that was captured at that moment, and apply a targeted fix before re-testing.
+
+## Troubleshooting a Failed Workflow
+
+Follow these steps whenever you need to investigate a failed or misbehaving execution.
+
+<Steps>
+  <Step title="Identify the failed run">
+    Open the workflow and click the **Runs** tab. Executions are listed in reverse chronological order, with their status displayed alongside each entry. Filter by **Failed** to narrow the list to only unsuccessful runs. Note the timestamp and trigger details of the run you want to investigate.
+  </Step>
+  <Step title="Inspect the failing step">
+    Click the failed run to expand its full execution log. Each step in the workflow is listed in order, with a status indicator showing whether it succeeded, was skipped, or failed. Scroll through the steps until you find the first one marked as failed — this is where execution stopped. Click that step to expand its detail panel.
+  </Step>
+  <Step title="Read the error context">
+    The detail panel shows the exact error message returned by AetherFlow or the connected service, along with the input data that was passed to the step and any partial output it produced before failing. Read the error message carefully — it usually names the field, condition, or external service that caused the failure. Cross-reference the input data to confirm whether the values being passed are what you expected.
+  </Step>
+  <Step title="Fix the issue">
+    Based on the error context, make the appropriate correction. This might mean updating a field mapping, refreshing an expired credential, adjusting a filter condition, or adding an error-handling branch to the workflow. See the common failure scenarios below for specific guidance on the most frequent error types.
+  </Step>
+  <Step title="Re-test the workflow">
+    After applying your fix, use the **Test** button to trigger a manual execution. Watch the run log in real time to confirm that the previously failing step now completes successfully. If the workflow passes the test, re-enable it and monitor the next few live executions via the execution logs to verify that the fix holds under real conditions.
+  </Step>
+</Steps>
+
+## Common Failure Scenarios
+
+<Accordion title="Authentication errors and expired credentials">
+  Authentication failures are among the most common workflow errors. They appear as messages like `401 Unauthorized`, `Invalid token`, or `Credentials expired` in the execution log.
+
+  To resolve an authentication error:
+  1. Navigate to **Integrations** in your AetherFlow settings.
+  2. Find the connection referenced in the failing step.
+  3. Click **Reconnect** and complete the re-authorization flow for that service.
+  4. Return to your workflow and re-test.
+
+  Many SaaS services issue short-lived OAuth tokens. If your workflow fails on a predictable schedule, check whether the connected service has a token expiry policy and configure AetherFlow's automatic token refresh if available for that integration.
+</Accordion>
+
+<Accordion title="Missing or malformed data from a previous step">
+  If a step receives data in an unexpected format — or receives no data at all because an upstream step produced empty output — you will see errors like `Cannot read property of undefined`, `Expected string, got null`, or similar type mismatch messages in the execution log.
+
+  To resolve a data error:
+  1. Inspect the output of the step immediately before the failing step in the execution log.
+  2. Confirm whether that output matches the format your failing step expects.
+  3. Add a **Transform** or **Filter** step between them to reshape or validate the data before it is passed forward.
+  4. Use conditional branching to handle cases where upstream data may be absent, so the workflow degrades gracefully rather than failing outright.
+</Accordion>
+
+<Accordion title="Rate limits and external API throttling">
+  When a connected service enforces API rate limits, you will see errors like `429 Too Many Requests` or `Rate limit exceeded` in the execution log. These failures are typically intermittent and tied to high-frequency workflow triggers.
+
+  To resolve rate limit errors:
+  1. Review the rate limits documented by the external service.
+  2. Add a **Delay** step before the throttled step to introduce spacing between API calls.
+  3. Consider enabling AetherFlow's built-in **Retry with backoff** option on the affected step — this automatically retries the call after progressively longer intervals.
+  4. If the workflow is triggered at very high volume, evaluate whether batching multiple records into a single API call is possible.
+</Accordion>
+
+<Accordion title="Workflow timeout on long-running steps">
+  AetherFlow enforces execution time limits per step and per workflow. If a step — such as a large data export, a slow database query, or an external process — takes longer than the allowed limit, the execution log will record a `Timeout` error.
+
+  To resolve timeout errors:
+  1. Check the execution log to see how long the step ran before it was terminated.
+  2. If the step is performing a large data operation, split it into smaller batches using AetherFlow's **Loop** step so that each iteration stays within the time limit.
+  3. For steps that call external services, check whether those services are experiencing degraded performance — the execution log timestamp can help you correlate the failure with any external status incidents.
+  4. Contact AetherFlow support if you need a higher timeout limit for a specific enterprise use case.
+</Accordion>
+
+<Accordion title="Trigger not firing as expected">
+  If a workflow is enabled but executions are not appearing in the run log, the issue is likely with the trigger configuration rather than the workflow steps themselves.
+
+  To diagnose a trigger issue:
+  1. Open the workflow and click **Edit Trigger**.
+  2. Confirm that the trigger conditions — schedule, webhook URL, or event filter — are configured exactly as intended.
+  3. For webhook triggers, use a tool like Postman or the built-in **Send Test Event** button to send a sample payload and verify that AetherFlow receives it. Check the execution log immediately afterward for a new entry.
+  4. For scheduled triggers, confirm that the timezone setting on the trigger matches the timezone you intend.
+</Accordion>
+
+## Diagnosing Slow Workflows
+
+A workflow that completes without errors but runs slower than expected warrants its own investigation. Open the execution log for a recent run and examine the **Duration** column for each step. Steps that account for a disproportionate share of the total run time are your optimization targets.
+
+<Info>
+  The execution log records the start time, end time, and duration for every step in every run. Use these timestamps to distinguish between a step that is genuinely slow and one that is simply waiting for a slow predecessor to finish.
+</Info>
+
+Common causes of slow workflows include:
+- **Large data payloads** being passed between steps — filter or paginate early in the workflow to reduce the volume of data in transit.
+- **Sequential API calls** that could be parallelized — use AetherFlow's **Parallel Branch** step to run independent calls simultaneously.
+- **Unoptimized loops** that iterate over hundreds or thousands of records one at a time — check whether the target API supports batch operations.
+
+After making changes, compare the duration of the updated workflow against the baseline you recorded from earlier execution logs to confirm the improvement.

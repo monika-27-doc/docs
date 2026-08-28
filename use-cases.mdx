@@ -1,0 +1,84 @@
+---
+title: "What You Can Build with AetherFlow"
+sidebarTitle: "Use Cases"
+description: "Explore real-world automation scenarios across sales, support, marketing, finance, and engineering — all built with plain-language prompts in AetherFlow."
+---
+
+AetherFlow is built for every team that deals with repetitive, cross-application work. From routing inbound leads to generating financial reports, the platform turns processes you currently handle manually into automations that run reliably in the background. The six scenarios below represent some of the most common — and highest-impact — automations AetherFlow customers build on day one.
+
+<CardGroup cols={2}>
+  <Card title="Lead Routing & CRM Enrichment" icon="user-plus" href="/integrations/overview">
+    Automatically capture new leads from forms, ads, or inbound emails, enrich the contact record with firmographic data, assign the lead to the right sales rep based on territory or deal size, and notify the rep via Slack or email — all within seconds of the lead arriving.
+  </Card>
+  <Card title="Support Ticket Triage" icon="headset" href="/integrations/overview">
+    When a new ticket lands in your helpdesk, AetherFlow classifies it by topic and urgency, routes it to the correct team queue, creates a linked task in your project management tool, and sends the customer an acknowledgement message with an estimated response time.
+  </Card>
+  <Card title="Scheduled Data Sync" icon="arrows-rotate" href="/concepts/triggers">
+    Keep two or more data sources in sync on a schedule — for example, export records from your CRM to a Google Sheet every morning, or push updated product inventory from your database to your e-commerce platform every hour, without any manual exports or imports.
+  </Card>
+  <Card title="Automated Reporting & Alerts" icon="bell" href="/monitoring/analytics">
+    Aggregate metrics from multiple applications — sales figures, support volume, infrastructure health — compile them into a formatted report, and deliver it to a Slack channel or email distribution list on a daily, weekly, or custom schedule. Add threshold-based alerts so your team is notified the moment a KPI moves outside an acceptable range.
+  </Card>
+  <Card title="Employee Onboarding" icon="id-card" href="/integrations/overview">
+    Trigger a multi-step onboarding sequence the moment HR marks a new hire as active. AetherFlow can provision accounts in your identity provider, add the employee to the right Slack channels, assign onboarding tasks in your project tool, and schedule calendar invitations for orientation sessions — all without any manual coordination.
+  </Card>
+  <Card title="Invoice & Billing Automation" icon="file-invoice-dollar" href="/integrations/overview">
+    When a contract is signed or a subscription renews, automatically generate an invoice in your billing system, attach it to the customer record in your CRM, send it to the customer via email, and log the transaction in your accounting software — eliminating manual data entry and reducing the risk of billing errors.
+  </Card>
+</CardGroup>
+
+## Diving deeper into each scenario
+
+<AccordionGroup>
+  <Accordion title="Lead Routing & CRM Enrichment" icon="user-plus">
+    **The problem:** Sales teams lose valuable time manually copying lead data between tools, looking up company information, and figuring out which rep should own each new opportunity.
+
+    **How AetherFlow solves it:** Connect your lead capture form (or ad platform) to AetherFlow and describe the routing logic in plain language — for example, *"Route leads from enterprise companies to the enterprise team and all others to the SMB team."* AetherFlow calls an enrichment API to append company size and industry data, evaluates the routing rule, updates the CRM, and fires a Slack message to the assigned rep in one seamless workflow.
+
+    **Key integrations:** HubSpot, Salesforce, Clearbit, Slack, Google Ads, LinkedIn Lead Gen Forms.
+  </Accordion>
+
+  <Accordion title="Support Ticket Triage" icon="headset">
+    **The problem:** Support queues fill up with unclassified tickets that sit unrouted until an agent manually reads and assigns them, slowing down response times and frustrating customers.
+
+    **How AetherFlow solves it:** AetherFlow monitors your helpdesk for new tickets and uses AI classification to detect the topic (billing, technical issue, feature request, etc.) and infer urgency from the message tone. It then assigns the ticket to the correct queue, creates a linked task in Jira or Asana, and responds to the customer automatically with a confirmation message and estimated SLA.
+
+    **Key integrations:** Zendesk, Intercom, Freshdesk, Jira, Asana, Slack.
+  </Accordion>
+
+  <Accordion title="Scheduled Data Sync" icon="arrows-rotate">
+    **The problem:** Teams rely on stale spreadsheets or manually triggered exports because keeping multiple systems in sync requires constant, error-prone manual effort.
+
+    **How AetherFlow solves it:** Define a scheduled trigger (hourly, daily, or any cron expression) and describe which data to move and where. AetherFlow handles pagination, field mapping, deduplication, and error retries automatically. If a sync fails, the execution log shows exactly which record caused the issue so you can fix it in seconds.
+
+    **Key integrations:** Google Sheets, Airtable, PostgreSQL, Snowflake, Salesforce, Shopify.
+  </Accordion>
+
+  <Accordion title="Automated Reporting & Alerts" icon="bell">
+    **The problem:** Compiling weekly metrics from five different tools into a single report takes hours every week — time that adds zero strategic value.
+
+    **How AetherFlow solves it:** Build a workflow that pulls data from each source on a schedule, formats it using a template, and delivers the report to the right audience. Pair it with a threshold-alert workflow that fires immediately when a metric (like error rate or revenue) crosses a limit you define, so you catch problems before they escalate.
+
+    **Key integrations:** Google Analytics, Stripe, PagerDuty, Datadog, Slack, email (SMTP).
+  </Accordion>
+
+  <Accordion title="Employee Onboarding" icon="id-card">
+    **The problem:** Onboarding a new employee involves a checklist spread across IT, HR, and the hiring manager — and something almost always falls through the cracks.
+
+    **How AetherFlow solves it:** Trigger the workflow when HR updates the employee status in your HRIS. AetherFlow provisions accounts in Okta or Azure AD, adds the user to the correct Slack channels and Google groups, creates onboarding tasks in Asana, and sends a personalized welcome email — all within minutes of the status change, with zero manual steps.
+
+    **Key integrations:** BambooHR, Workday, Okta, Azure Active Directory, Slack, Google Workspace, Asana.
+  </Accordion>
+
+  <Accordion title="Invoice & Billing Automation" icon="file-invoice-dollar">
+    **The problem:** Generating and delivering invoices manually is slow, inconsistent, and a frequent source of revenue-recognition errors.
+
+    **How AetherFlow solves it:** Connect your contract or subscription platform to AetherFlow and trigger the billing workflow on a signed event or renewal date. AetherFlow creates the invoice in Stripe or QuickBooks, attaches a PDF to the customer's CRM record, sends it directly to the customer's billing contact, and posts a reconciliation entry in your accounting system — creating a complete, auditable paper trail with no human intervention.
+
+    **Key integrations:** Stripe, QuickBooks, Xero, HubSpot, Salesforce, DocuSign.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Not sure which automation to build first? Head to the **Workflow Builder** and describe a process that currently costs your team more than an hour per week. AetherFlow will generate a starting point you can refine and activate the same day.
+</Tip>

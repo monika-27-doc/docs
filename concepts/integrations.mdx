@@ -1,0 +1,91 @@
+---
+title: "Connecting Apps with AetherFlow Integrations"
+sidebarTitle: "Integrations"
+description: "Learn how AetherFlow integrations work, how to connect your apps securely, and how to build a healthy integration strategy for your team."
+---
+
+Integrations are the bridges between AetherFlow and the applications your team already uses. By connecting your tools — your CRM, support platform, communication apps, databases, and more — you give AetherFlow the access it needs to read data, take actions, and move information across your business automatically. The more apps you connect, the more powerful your workflows become.
+
+## What Is an Integration?
+
+An integration is an authorized connection between AetherFlow and a third-party application. Once you connect an app, AetherFlow can interact with it on your behalf: listening for events that trigger workflows, reading records to inform decisions, and writing data or sending messages as workflow actions.
+
+Each integration is scoped to the permissions you grant during setup. AetherFlow only requests the access it needs to perform the actions you've authorized — you remain in full control of what each connected app can do.
+
+## How to Connect an App
+
+Connecting a new application takes only a few minutes. Follow these steps to add an integration to your AetherFlow account.
+
+<Steps>
+  <Step title="Open the Integrations area">
+    Navigate to the **Integrations** section from the main AetherFlow sidebar. Here you'll find the full catalog of available applications, organized by category, along with any apps you've already connected.
+  </Step>
+  <Step title="Select the application">
+    Search for or browse to the app you want to connect. Click the app's card to open its integration details page, where you can review what AetherFlow will be able to do with that connection.
+  </Step>
+  <Step title="Review the requested permissions">
+    Before authorizing, read the list of permissions AetherFlow is requesting from the app. Permissions are scoped to the minimum access required — for example, read-only access to contacts, or the ability to create but not delete records. If a permission seems broader than you expect, check the integration documentation or contact support before proceeding.
+  </Step>
+  <Step title="Authorize the connection">
+    Click **Connect** and follow the authorization flow for the app. Most integrations use OAuth, which means you'll be redirected to the app's own login screen to grant access — your credentials are never stored by AetherFlow.
+  </Step>
+  <Step title="Configure the connection">
+    After authorization, complete any additional configuration the integration requires. Depending on the app, this might include selecting a specific account, workspace, or project, and mapping any default fields AetherFlow should use when interacting with that app.
+  </Step>
+  <Step title="Test the connection">
+    Use the **Test Connection** option to confirm that AetherFlow can communicate with the app successfully. A successful test means the integration is ready to be used in workflow triggers and actions.
+  </Step>
+</Steps>
+
+<Note>
+  Regularly review your connected integrations and remove any apps your team no longer uses. Unused connections represent unnecessary access to your business data. To remove a connection, open the integration's detail page in the Integrations area and select **Disconnect**. Disconnecting an app will disable any workflow triggers or actions that depend on it — review affected workflows before removing a connection.
+</Note>
+
+## Permissions and Security
+
+Every integration requires you to authorize a set of permissions on the connected app. AetherFlow takes a least-privilege approach: it requests only the permissions needed to support the actions available within that integration. You should apply the same scrutiny when configuring each connection.
+
+<CardGroup cols={2}>
+  <Card title="Review Before You Authorize" icon="magnifying-glass">
+    Read the permissions list carefully before completing an integration. If you only need AetherFlow to read data from an app, confirm that no write permissions are being requested before you proceed.
+  </Card>
+  <Card title="OAuth Security" icon="lock">
+    Most integrations use OAuth for authorization, meaning your credentials are handled entirely by the connected app — not stored by AetherFlow. You can revoke access at any time from within the connected app's settings.
+  </Card>
+  <Card title="Audit Active Connections" icon="shield-check">
+    Periodically open the Integrations area and audit your active connections. Remove any apps that are no longer part of active workflows to keep your integration surface area as small as possible.
+  </Card>
+  <Card title="Role-Based Access" icon="users">
+    Use AetherFlow's role-based access controls to limit which team members can add, edit, or remove integrations. Reserve that permission for account administrators or designated operations owners.
+  </Card>
+</CardGroup>
+
+<Warning>
+  If you suspect an integration has been compromised or that an authorized connection is behaving unexpectedly, disconnect it immediately from the Integrations area and revoke access from within the connected app's own settings. Then contact AetherFlow support.
+</Warning>
+
+## Integration Strategy
+
+Connecting every available app at once can make your integration landscape difficult to manage. A focused strategy helps you get value faster and keeps your security posture clean.
+
+<Tip>
+  Start with the applications involved in your highest-value workflows — the processes where automation saves the most time or reduces the most risk. Get those integrations working well before expanding to lower-priority tools.
+</Tip>
+
+A practical approach to building your integration stack:
+
+1. **Identify your top workflows first.** List the three to five automations that would have the greatest impact on your team. Work backward from each workflow to determine which apps need to be connected.
+2. **Connect one integration at a time.** Set up each connection, test it within a real workflow, and confirm it behaves as expected before moving to the next app.
+3. **Document what each integration does.** Note which workflows depend on each connected app and what permissions it holds. This makes it much easier to assess impact before removing or modifying a connection later.
+4. **Review integrations on a regular cadence.** Schedule a quarterly review of all active connections. Remove integrations that are no longer tied to active workflows.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Workflows" icon="diagram-project" href="/concepts/workflows">
+    See how integrations fit into the broader workflow structure — from triggers to actions.
+  </Card>
+  <Card title="Triggers" icon="bolt" href="/concepts/triggers">
+    Learn how connected apps power event-based triggers that start your workflows in real time.
+  </Card>
+</CardGroup>

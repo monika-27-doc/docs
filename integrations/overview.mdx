@@ -1,0 +1,62 @@
+---
+title: "AetherFlow Integrations: Connect Your Apps"
+sidebarTitle: "Overview"
+description: "Connect your favorite apps to AetherFlow and turn plain-language descriptions into powerful, integrated workflows that work across your entire tool stack."
+---
+
+Integrations are the bridge between AetherFlow and the tools your team already uses every day. By connecting your apps, you give AetherFlow the ability to trigger workflows based on real-world events and take actions — sending messages, updating records, firing notifications — inside the tools that matter most to your business. Start with the apps at the center of your highest-value workflows, then expand your integration library as your automation needs grow.
+
+## How to Connect an App
+
+Follow these steps to authorize and configure any integration in AetherFlow.
+
+<Steps>
+  <Step title="Open the Integrations area">
+    In the AetherFlow sidebar, click **Integrations**. You'll see a searchable catalog of all available apps.
+  </Step>
+  <Step title="Select an application">
+    Find the app you want to connect — either by browsing the catalog or using the search bar — then click its tile to open the integration detail page.
+  </Step>
+  <Step title="Authorize the requested permissions">
+    Click **Connect**. AetherFlow will redirect you to the app's own authorization screen, where you can review and grant the permissions required for your workflows. Only the permissions you approve are ever used.
+  </Step>
+  <Step title="Configure the connection">
+    After authorization, return to AetherFlow to complete the setup. Depending on the app, you may need to select a workspace, server, account, or other scope. Give the connection a recognizable name so you can identify it later.
+  </Step>
+  <Step title="Use the integration in a workflow">
+    Your connected app is now available as a trigger or action inside the workflow builder. Describe what you want to automate in plain language and AetherFlow will map it to the right integration automatically.
+  </Step>
+</Steps>
+
+## Featured Integrations
+
+Get started with the most popular integrations or explore the full catalog to find the tools your team relies on.
+
+<CardGroup cols={2}>
+  <Card title="Slack" icon="slack" href="/integrations/slack">
+    Send channel messages, post notifications, and create reminders directly from your AetherFlow workflows.
+  </Card>
+  <Card title="Microsoft Teams" icon="microsoft" href="/integrations/microsoft-teams">
+    Post to channels, send Adaptive Cards, and trigger automations from meeting and conversation events in Teams.
+  </Card>
+  <Card title="Discord" icon="discord" href="/integrations/discord">
+    Deliver alerts, community notifications, automated responses, and workflow status updates to any Discord server or channel.
+  </Card>
+  <Card title="More Integrations" icon="grid-2-plus" href="/integrations">
+    AetherFlow connects to hundreds of apps. Open the Integrations catalog, search for any tool in your stack, and follow the same authorize-and-configure flow to get started.
+  </Card>
+</CardGroup>
+
+## Security Best Practices
+
+<Warning>
+  **Review permissions carefully before authorizing any integration.** Each app requests a specific set of permissions — grant only what your workflows genuinely need. AetherFlow displays the full permission list on the authorization screen so you can make an informed decision before proceeding.
+</Warning>
+
+<Note>
+  **Remove unused connections.** If you stop using an integration, navigate to **Integrations → Connected Apps**, find the connection, and click **Disconnect**. Removing dormant connections reduces your attack surface and keeps your integration list clean and auditable.
+</Note>
+
+<Tip>
+  Start with the two or three apps that appear in your most critical workflows. A focused integration library is easier to manage and audit than a large one built up without a clear purpose.
+</Tip>

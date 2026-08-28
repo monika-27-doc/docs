@@ -1,0 +1,84 @@
+---
+title: "Connect Discord to AetherFlow Automations"
+sidebarTitle: "Discord"
+description: "Authorize the Discord integration, select your server and channel, and start delivering alerts, notifications, and workflow status updates to your community."
+---
+
+Connecting Discord to AetherFlow lets your workflows reach your community, team, or audience directly inside the servers and channels where they spend their time. Whether you're sending automated alerts to an internal ops server, delivering status updates to a customer community, or triggering automated responses based on workflow outcomes, AetherFlow handles the heavy lifting once the integration is authorized. Follow the steps below to connect Discord and start building.
+
+## Connect Discord to AetherFlow
+
+<Steps>
+  <Step title="Open the Integrations catalog">
+    In the AetherFlow sidebar, click **Integrations**, then search for **Discord** and select its tile.
+  </Step>
+  <Step title="Click Connect and authorize the integration">
+    On the Discord integration page, click **Connect**. AetherFlow will redirect you to Discord's OAuth authorization screen. Sign in with your Discord account if prompted.
+  </Step>
+  <Step title="Review and approve permissions">
+    Discord will display the permissions AetherFlow's bot is requesting — such as the ability to send messages and read channel information. Review the list carefully, then click **Authorize** to grant access.
+  </Step>
+  <Step title="Select the server">
+    From the dropdown on Discord's authorization screen, choose the server you want AetherFlow to access. You must have the **Manage Server** permission on that server to add a bot. Click **Authorize** to confirm.
+  </Step>
+  <Step title="Configure the channel">
+    After returning to AetherFlow, select the default channel where workflow messages will be sent. You can override this default on a per-workflow basis when building individual automations.
+  </Step>
+  <Step title="Test the connection">
+    Click **Send Test Message** and confirm the test message appears in your selected Discord channel. A successful test means the bot is active and the integration is ready to use.
+  </Step>
+</Steps>
+
+<Note>
+  AetherFlow connects to Discord via a bot account. The bot must be present in every server you want to use and must have the appropriate channel-level permissions. If you want to send messages to a new server, repeat the authorization flow and select that server during Step 4.
+</Note>
+
+## Common Workflow Examples
+
+Once Discord is connected, you can reference it in any workflow you describe to AetherFlow. Here are the most popular ways teams and communities use the Discord integration.
+
+### Send Alerts
+
+Post real-time alerts to a dedicated Discord channel when a workflow detects a critical condition — an error threshold crossed, a failed process, or an urgent incoming event. Keeping alerts in a pinned channel ensures the right people see them immediately.
+
+**Example prompt:** *"When our server uptime monitor reports downtime, send an alert to the #incidents channel in our Discord server."*
+
+### Community Notifications
+
+Keep your community informed by posting automated announcements when key events occur — a new blog post published, a product update released, or a milestone reached. Automated notifications keep engagement high without requiring manual posts.
+
+**Example prompt:** *"When a new article is published on our website, post a notification to the #announcements channel with the article title and link."*
+
+### Automated Responses
+
+Trigger a structured response in Discord when a workflow condition is met — for example, welcoming new members, confirming a submission, or delivering a follow-up message after a form is completed.
+
+**Example prompt:** *"When someone submits our beta sign-up form, post a welcome message in #general tagging their Discord username."*
+
+### Workflow Status Updates
+
+Use Discord as a live feed for workflow execution status. Post updates when a multi-step automation progresses through key stages, so your team has full visibility into what's running and what's complete.
+
+**Example prompt:** *"After each nightly data sync workflow completes, post a status summary to the #ops-updates channel showing rows processed and any errors."*
+
+<Tip>
+  Create a dedicated Discord channel — such as `#aetherflow-alerts` — for workflow messages. Separating automated messages from human conversation makes it easier to monitor workflow output and prevents notification fatigue in your main channels.
+</Tip>
+
+## Troubleshooting
+
+<Accordion title="The bot isn't posting messages — how do I verify bot permissions?">
+  Confirm that the AetherFlow bot has the **Send Messages** permission in the target channel. In Discord, open **Server Settings → Integrations → Bots and Apps**, find the AetherFlow bot, and review its role and channel-level permissions. If the bot's role lacks **Send Messages** or is blocked at the channel level, update the permissions and retry the workflow.
+</Accordion>
+
+<Accordion title="The bot is authorized but can't access a specific channel">
+  Discord allows channel-level permission overrides that can block a bot even if its server-wide role grants access. Right-click the target channel, select **Edit Channel → Permissions**, and confirm the AetherFlow bot's role has **View Channel** and **Send Messages** explicitly allowed. Remove any **Deny** overrides that may be blocking the bot.
+</Accordion>
+
+<Accordion title="The integration page shows an error or disconnected status">
+  An inactive or errored integration status usually means the OAuth token has been revoked. This can happen if you removed the AetherFlow bot from your server, changed your Discord account password, or revoked the authorization in Discord's **User Settings → Authorized Apps**. To fix this, navigate to **Integrations → Connected Apps** in AetherFlow, disconnect the Discord connection, and reauthorize it from the beginning.
+</Accordion>
+
+<Accordion title="My workflow appears to run but no messages arrive in Discord">
+  Start by checking the workflow execution log: go to **Workflows → [Your Workflow] → Logs** and look for any failed steps or error messages on the Discord action. Common causes include an incorrect channel ID (update the channel reference in the workflow action), a bot that has been removed from the server, or a permissions change on the channel. Resolve the flagged issue and re-run the workflow to confirm.
+</Accordion>

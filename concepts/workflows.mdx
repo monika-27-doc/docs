@@ -1,0 +1,92 @@
+---
+title: "Understanding Workflows in AetherFlow"
+sidebarTitle: "Workflows"
+description: "Learn what workflows are, how they're structured, and how AetherFlow turns your plain-language descriptions into powerful automations."
+---
+
+Workflows are the core building blocks of AetherFlow. Each workflow represents a sequence of automated steps that run in response to a trigger — no code required. You describe what you want to happen in plain language, and AetherFlow translates that intent into a structured, executable process that connects your apps and moves work forward automatically.
+
+## What Is a Workflow?
+
+A workflow is an automated sequence of actions that runs whenever a specific condition is met. Instead of manually moving data between tools, repeating the same tasks, or tracking down status updates, you define the logic once and let AetherFlow handle execution every time.
+
+Workflows in AetherFlow are:
+
+- **Triggered automatically** by events, schedules, or manual initiation
+- **Built from natural language** — describe your goal and AetherFlow proposes the steps
+- **Connected to your apps** through integrations you authorize
+- **Observable** — every execution is logged so you can monitor performance and debug issues
+
+## Anatomy of a Workflow
+
+Every workflow follows the same fundamental structure: something starts it, steps are carried out in order, and an outcome is produced. Understanding this structure helps you design automations that are reliable and easy to maintain.
+
+<Steps>
+  <Step title="Trigger">
+    A trigger is the event or condition that starts the workflow. This could be a new record appearing in your CRM, a form submission, a scheduled time, or a manual run initiated by a team member. Without a trigger, a workflow will never execute.
+  </Step>
+  <Step title="Conditions (Optional)">
+    Conditions evaluate data from the trigger or earlier steps and determine which path the workflow should follow. Use conditions to branch your logic — for example, routing high-value leads to one team and standard inquiries to another — without duplicating the entire workflow.
+  </Step>
+  <Step title="Actions">
+    Actions are the individual operations AetherFlow performs: sending a message, creating a record, updating a field, calling an API, or any other task supported by your connected integrations. A workflow can include one action or dozens, executed in sequence or in parallel.
+  </Step>
+  <Step title="Error Handling">
+    If a step fails, your configured fallback behavior determines what happens next — retrying the step, notifying a team member, or gracefully stopping the workflow. Execution logs capture the details so you can identify and resolve recurring issues.
+  </Step>
+  <Step title="Completion">
+    Once all steps have run successfully (or the error path has been handled), the workflow run is marked complete. A full execution record is written to your logs, including timing, step outcomes, and any data that was transformed along the way.
+  </Step>
+</Steps>
+
+## Conditional Branching
+
+Real-world processes rarely follow a single straight path. AetherFlow lets you add branching logic to a workflow so it can handle different outcomes intelligently. A branch evaluates a condition — such as the value of a field, the status returned by an integration, or whether a previous step succeeded — and then routes execution down the appropriate path.
+
+<Tip>
+  Design your branches around the most common outcome first. Placing your highest-frequency path at the top of the branch logic keeps workflows readable and makes the rare edge-case paths easier to spot and maintain.
+</Tip>
+
+For example, a contract-review workflow might branch based on deal size: contracts under a certain threshold are auto-approved and filed, while larger contracts are routed to a manager for review before any further steps run.
+
+## Error Handling and Resilience
+
+Every step in a workflow can fail — an API might be temporarily unavailable, a required field might be missing, or a downstream service might return an unexpected response. AetherFlow lets you define fallback behavior at the step level so a single failure does not silently break the rest of your automation.
+
+<CardGroup cols={2}>
+  <Card title="Retry Logic" icon="arrows-rotate">
+    Configure a step to automatically retry on failure, with a delay between attempts. This handles transient errors — like brief API outages — without requiring any manual intervention.
+  </Card>
+  <Card title="Fallback Actions" icon="right-left">
+    Define an alternative action to take when a step fails. For example, if a Slack notification fails to send, fall back to sending an email to the same recipient.
+  </Card>
+  <Card title="Stop and Alert" icon="bell">
+    Halt the workflow at a failed step and send an alert to a designated owner. Use this for critical steps where proceeding on a failure would produce incorrect or harmful results.
+  </Card>
+  <Card title="Execution Logs" icon="list-check">
+    Review detailed logs for every workflow run to identify which step failed, what data it received, and what error was returned. Logs make it straightforward to diagnose and fix recurring issues.
+  </Card>
+</CardGroup>
+
+## Reusable Patterns
+
+As your team builds more workflows, you'll notice common structures appearing repeatedly — an approval loop, a data-enrichment step, a notification sequence. AetherFlow lets you standardize these patterns so any workflow can reference them rather than rebuilding the same logic from scratch.
+
+<Info>
+  Reusable patterns are especially valuable for teams with multiple workflow builders. Standardizing your most common structures ensures consistency across automations and reduces the time it takes to onboard new team members.
+</Info>
+
+## Role-Based Access
+
+Not every team member needs to edit every workflow. AetherFlow's role-based access controls let you decide who can view, edit, activate, or delete each workflow. Assign tighter permissions to production workflows that affect critical business processes, and give broader access to sandbox environments where your team experiments with new ideas.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Triggers" icon="bolt" href="/concepts/triggers">
+    Learn about the different trigger types — event-based, scheduled, and manual — and when to use each one.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/concepts/integrations">
+    Connect the apps your workflows depend on by setting up integrations in AetherFlow.
+  </Card>
+</CardGroup>

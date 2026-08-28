@@ -1,0 +1,37 @@
+---
+title: "Best Practices for Reliable AetherFlow Automations"
+sidebarTitle: "Best Practices"
+description: "Apply these proven practices to build AetherFlow automations that are easy to test, maintain, and scale with confidence over time."
+---
+
+Building a workflow that runs correctly once is straightforward. Building one that runs correctly hundreds of times, handles edge cases gracefully, and stays easy for your team to maintain — that takes a bit more intention. The four practices below reflect lessons from teams who have scaled AetherFlow automations across complex, high-volume operations.
+
+<CardGroup cols={2}>
+
+  <Card title="Start Small" icon="seedling">
+    Begin with the narrowest possible version of your automation and validate that it works exactly as intended before expanding. Add one trigger, one action, and the most obvious happy-path logic first. Once the core behavior is confirmed, layer in additional steps, branches, and edge-case handling incrementally. This approach shortens debugging cycles dramatically — when something breaks in a small workflow, the cause is almost always obvious.
+  </Card>
+
+  <Card title="Write Specific Prompts" icon="pen-to-square">
+    Vague descriptions produce vague workflows. When writing your automation prompt, state four things explicitly: the **trigger** (what event starts the workflow), the **desired outcome** (what should be true when the workflow finishes), any **important constraints** (rate limits, business rules, data filters), and the **expected output** (the format or destination of the result). The more precisely you describe intent, the closer AetherFlow's generated steps will be to what you actually need.
+  </Card>
+
+  <Card title="Test Before Activation" icon="flask">
+    Always run your workflow against representative sample data before switching it on in production. Use real-looking payloads — not minimal stubs — so edge cases in your data surface during testing rather than during a live run. Walk through the Test Results panel step by step and verify not just that each step passed, but that the data values flowing between steps are correct. A step can pass and still produce wrong output if field mappings are off.
+  </Card>
+
+  <Card title="Monitor Continuously" icon="chart-line">
+    Activation is not the finish line. Review your workflow's execution history and performance metrics on a regular cadence — at minimum, weekly for business-critical automations. Look for steps with rising failure rates, unexpected retry counts, or latency spikes, as these are early signals of downstream API changes or data quality issues. Catching and correcting problems early prevents a minor glitch from becoming an outage.
+  </Card>
+
+</CardGroup>
+
+<Note>
+  Testing is the single highest-leverage step in the workflow development process. A workflow activated without proper testing can silently corrupt data, send duplicate notifications, or miss records entirely — and these problems are often harder to reverse than they were to prevent. Always complete at least one full test run with representative data before going live.
+</Note>
+
+## Putting it all together
+
+These four practices reinforce each other. Starting small makes testing faster and more thorough. Specific prompts reduce the number of test iterations you need. Thorough testing makes monitoring less stressful because you have a reliable baseline to compare against. Continuous monitoring surfaces the insights that inform your next round of improvements.
+
+Treat each workflow as a living artifact — revisit it when the underlying process changes, when a connected API updates, or when monitoring reveals a pattern worth addressing. Automations that are regularly reviewed stay reliable far longer than those left to run unattended.

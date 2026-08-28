@@ -1,0 +1,116 @@
+---
+title: "Advanced Workflow Features and Controls"
+sidebarTitle: "Advanced Features"
+description: "Extend your AetherFlow automations with conditional branching, scheduled triggers, error handling, and reusable workflow patterns."
+---
+
+Once your core automations are running smoothly, AetherFlow's advanced controls let you handle complexity, edge cases, and scale without rebuilding workflows from scratch. Each feature below tackles a different dimension of workflow sophistication — explore the ones that match your immediate needs.
+
+<Accordion title="Conditional Branching">
+
+  Conditional branching lets you build decision logic directly into a workflow, routing execution down different paths depending on the data or outcome at any given step. Instead of creating separate workflows for every scenario, you define the conditions once and let AetherFlow route each run automatically.
+
+  **How it works**
+
+  After any step, insert a **Branch** node and define your conditions using field values, status codes, or custom expressions. Each branch can contain its own sequence of actions and, optionally, merge back into a shared path later in the workflow.
+
+  **Example scenario**
+
+  You receive customer feedback via a form. If the satisfaction score is 8 or higher, the workflow adds the contact to a "Happy Customers" list and sends a referral invitation. If the score is below 8, it creates a follow-up task in your CRM and notifies the account manager via email — all within a single workflow.
+
+  ```plaintext
+  Trigger: New form submission received
+  Branch A (score >= 8): Add to "Happy Customers" list → Send referral email
+  Branch B (score < 8):  Create CRM follow-up task → Email account manager
+  ```
+
+  <Tip>
+    Keep branch conditions as specific as possible. Overlapping or ambiguous conditions can cause a run to follow the wrong path and are harder to debug in execution logs.
+  </Tip>
+
+</Accordion>
+
+<Accordion title="Scheduled Triggers">
+
+  Scheduled triggers fire a workflow automatically on a recurring cadence — hourly, daily, weekly, or on a custom cron expression — without requiring an external event to kick things off. Use them for reporting, data syncs, routine maintenance tasks, and any automation that should run on a clock rather than in response to user activity.
+
+  **How it works**
+
+  When creating or editing a workflow, select **Schedule** as the trigger type. Choose a preset interval (hourly, daily, weekly) or enter a cron expression for more granular control. AetherFlow stores the schedule in UTC; you can display it in your local time zone from the workflow settings panel.
+
+  **Example scenario**
+
+  Every weekday morning at 8 AM, the workflow queries your database for orders placed in the previous 24 hours, compiles the results into a summary, and posts it to a designated Slack channel — so your operations team starts each day with the latest numbers already in front of them.
+
+  ```plaintext
+  Schedule: Every weekday at 08:00 UTC
+  Step 1: Query database for orders in the last 24 hours
+  Step 2: Format results as a summary table
+  Step 3: Post summary to #ops-daily-report in Slack
+  ```
+
+  <Warning>
+    Avoid scheduling high-frequency workflows (such as every minute) unless the connected APIs explicitly support that call volume. Exceeding rate limits on third-party services can cause steps to fail and may trigger account restrictions on those platforms.
+  </Warning>
+
+</Accordion>
+
+<Accordion title="Error Handling">
+
+  Production workflows encounter unexpected conditions — an API goes down, a required field is missing, or a response times out. AetherFlow's error handling tools let you define exactly what should happen when a step fails, rather than leaving the workflow in an incomplete state.
+
+  **How it works**
+
+  Open any step's settings panel and expand the **On Failure** section. You can choose from three behaviors:
+
+  - **Retry** — Automatically retry the step up to a configurable number of times with an exponential backoff delay.
+  - **Fallback action** — Execute a different step instead (for example, write to a dead-letter queue or send an alert email).
+  - **Stop and notify** — Halt the workflow run immediately and send a notification to a specified channel or email address.
+
+  Use the **Execution Logs** view to search for recurring failure patterns across multiple runs. Filter by step name, error type, or date range to surface systemic issues quickly.
+
+  **Example scenario**
+
+  A workflow pushes order data to a third-party shipping API. If the API returns a 503 error, the step retries three times over two minutes. If all retries fail, AetherFlow logs the order details to a fallback Google Sheet and sends a Slack alert to the logistics team so the order can be processed manually.
+
+  ```plaintext
+  Step: Submit order to Shipping API
+    On failure (503):
+      Retry 3 times with 30-second backoff
+      If still failing → Log to "Failed Orders" Sheet + Slack alert to #logistics
+  ```
+
+  <Info>
+    Execution logs are retained for 30 days on the Growth plan and 90 days on the Business plan. Export logs via the API if you need longer-term records for compliance purposes.
+  </Info>
+
+</Accordion>
+
+<Accordion title="Reusable Patterns">
+
+  Reusable patterns (also called **Workflow Templates**) let you extract a proven sequence of steps and save it as a building block that any team member can drop into a new workflow. This standardizes how common tasks are performed across your organization and eliminates the copy-paste errors that arise when teams rebuild the same logic independently.
+
+  **How it works**
+
+  Select any group of steps in the workflow editor, click **Save as Pattern**, and give the pattern a descriptive name. The pattern appears in the **Patterns Library**, visible to everyone in your workspace. When someone starts a new workflow, they can insert the pattern as a single node and customize only the fields specific to that use case.
+
+  **Example scenario**
+
+  Your team frequently builds workflows that end by sending a formatted summary email to a manager. You save the "Send Summary Email" sequence — including the HTML template, recipient lookup, and delivery confirmation step — as a pattern. Now, any new workflow that needs that behavior inserts the pattern in one click instead of reconfiguring those steps from scratch.
+
+  ```plaintext
+  Pattern: "Send Summary Email"
+  ├── Step 1: Format body using Summary Email template
+  ├── Step 2: Look up manager email from HR directory
+  └── Step 3: Send email via SendGrid + log delivery status
+  ```
+
+  <Tip>
+    Review and update your shared patterns quarterly. Outdated field mappings or deprecated API versions in a pattern will propagate silently to every workflow that uses it.
+  </Tip>
+
+</Accordion>
+
+## Combining advanced features
+
+These capabilities compound each other. A scheduled workflow can branch based on the data it retrieves, apply error handling to each branch independently, and be built from reusable patterns — all at the same time. Start by adding one advanced feature to an existing workflow to learn how it behaves before layering in others.

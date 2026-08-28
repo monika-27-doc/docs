@@ -1,0 +1,61 @@
+---
+title: "Data Privacy, Security, and Compliance Guide"
+sidebarTitle: "Data Privacy"
+description: "Understand how AetherFlow handles your data, configure access controls, and map your usage to your organization's compliance requirements."
+---
+
+Automation workflows by their nature touch data — they move it, transform it, and hand it off between systems. Using AetherFlow responsibly means understanding what data your workflows process, limiting exposure to sensitive information, and ensuring your usage aligns with your organization's privacy and regulatory obligations. This guide walks you through the key practices for keeping your automations secure and compliant.
+
+<Warning>
+  Before deploying any workflow that processes personal data, financial records, health information, or other sensitive data, review your data handling approach, access controls, and compliance requirements in full. Deploying sensitive workflows without this review can create regulatory exposure or data breach risk for your organization.
+</Warning>
+
+<Accordion title="Data Handling: Know What Your Workflows Process">
+  Every workflow you build in AetherFlow acts as a data pipeline. Before deploying a workflow, take stock of exactly what information flows through it — what data enters at the trigger, what is passed between steps, and what leaves through the final action.
+
+  **Limit sensitive data to what is strictly necessary.** If a workflow only needs a customer's order ID and email address to send a confirmation, do not pass the customer's full record — including payment details, address, or other fields — through every step. Use AetherFlow's **Transform** step to select only the fields your workflow actually needs before passing data downstream.
+
+  **Avoid storing sensitive data in workflow outputs or logs.** AetherFlow execution logs capture step inputs and outputs to support debugging. If a step processes sensitive data — such as a password, a credit card number, or a social security number — use AetherFlow's **Mask Field** option on that step to prevent the value from appearing in logs.
+
+  **Be deliberate about where data lands.** Each action step in your workflow sends data to an external service. Confirm that each destination is authorized to receive the category of data you are sending, and that the data transfer complies with any cross-border data transfer rules that apply to your organization.
+
+  <Tip>
+    Conduct a brief data flow review for any new workflow that connects to a customer-facing system, a database, or a regulated service. A five-minute review before deployment is far less costly than discovering a data exposure issue after the fact.
+  </Tip>
+</Accordion>
+
+<Accordion title="Access Controls: Limit Who Can See and Edit Workflows">
+  AetherFlow's role-based access control system is your primary mechanism for ensuring that only the right people can interact with sensitive workflows.
+
+  **Assign roles based on the principle of least privilege.** Give each team member only the access they need to do their job. A colleague who monitors a workflow's output does not need edit access — assign them the Viewer role. Reserve Admin and Owner roles for the people who genuinely need to manage workspace settings and integrations.
+
+  **Review connected applications regularly.** Every integration you add to AetherFlow represents a connection between your AetherFlow workspace and an external service. Over time, integrations accumulate — some may connect to services that are no longer actively used, or may be authorized with credentials that belong to someone who has left the organization.
+
+  To audit your connected integrations:
+  1. Go to **Settings → Integrations**.
+  2. Review each connected application and confirm it is still actively needed.
+  3. Disconnect any integration that is no longer in use.
+  4. For integrations that use personal credentials (such as a named OAuth account), confirm the credential still belongs to a current team member with the appropriate access level.
+
+  **Review team membership and permissions periodically.** When team members leave or change roles, update their AetherFlow permissions immediately. An inactive account with Admin access is an unnecessary risk. Schedule a quarterly access review to keep permissions current.
+
+  **Use approval workflows for sensitive automations.** On Enterprise plans, require an approval step before any changes to workflows that handle sensitive data go live. This creates an additional human checkpoint and an auditable record of who approved each change.
+</Accordion>
+
+<Accordion title="Compliance Planning: Map AetherFlow to Your Regulatory Requirements">
+  If your organization operates under regulatory frameworks — GDPR, HIPAA, SOC 2, CCPA, or others — your AetherFlow usage needs to fit within your broader compliance program. Work through the following areas before deploying workflows that handle regulated data.
+
+  **Data retention.** Understand how long AetherFlow retains execution logs and workflow data for your plan, and map this against your organization's data retention policy. If your policy requires data to be deleted after a specific period, confirm that AetherFlow's retention settings can be configured to match. Enterprise plans offer configurable retention windows and log export options to support this.
+
+  **Access and audit trails.** Many compliance frameworks require you to demonstrate who accessed what data and when. AetherFlow's execution logs record every step's inputs and outputs, and Enterprise audit logs record every action taken by every user in your workspace. Before deploying a regulated workflow, confirm that these logs satisfy your audit trail requirements and set up log export if you need to preserve records outside of AetherFlow.
+
+  **Data processing agreements.** If your organization is subject to GDPR or similar regulations, you may need a Data Processing Agreement (DPA) with AetherFlow before processing personal data of individuals in covered jurisdictions. Contact [privacy@aetherflow.io](mailto:privacy@aetherflow.io) to request a DPA.
+
+  **Regulatory boundaries.** Some regulations restrict where data can be stored or processed geographically. Confirm that AetherFlow's infrastructure region settings align with any data residency requirements that apply to your organization. Contact your AetherFlow account team to discuss available data residency options.
+
+  **Incident response.** Include AetherFlow in your organization's data breach and incident response plan. Know how to disable a workflow immediately if it is implicated in a data incident, how to export logs for forensic review, and how to contact AetherFlow support in an emergency.
+
+  <Info>
+    AetherFlow maintains a Trust and Security page at [aetherflow.io/security](https://aetherflow.io/security) with up-to-date information on certifications, infrastructure security, and compliance documentation available to customers.
+  </Info>
+</Accordion>

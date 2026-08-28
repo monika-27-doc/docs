@@ -1,0 +1,79 @@
+---
+title: "Collaborate on Automations with Your Team"
+sidebarTitle: "Collaboration"
+description: "Invite teammates, assign roles, and share workflows in AetherFlow to build and manage automations together without stepping on each other's work."
+---
+
+AetherFlow is built for teams. You can invite colleagues, assign the right level of access to each person, and share workflows across your organization — all while keeping clear boundaries around who can edit, trigger, or manage sensitive automations. Good collaboration starts with the right structure, and AetherFlow's role-based access model gives you that foundation.
+
+## Inviting Team Members
+
+To add someone to your AetherFlow workspace:
+
+1. Go to **Settings → Team** from the main navigation.
+2. Click **Invite Member**.
+3. Enter the person's email address and select the role you want to assign them.
+4. Click **Send Invite**.
+
+The invited person will receive an email with a link to join your workspace. Until they accept, their status in the Team settings page will show as **Pending**. You can resend or revoke pending invitations at any time.
+
+<Note>
+  You must be an Owner or Admin to invite new team members or change existing members' roles.
+</Note>
+
+## Understanding Roles and Permissions
+
+AetherFlow uses four roles to control what each team member can see and do. Assign roles based on what each person actually needs — following the principle of least privilege keeps your automations secure and your workspace organized.
+
+<CardGroup cols={2}>
+  <Card title="Owner" icon="crown">
+    Full control over the workspace. Owners manage billing, configure workspace-wide settings, assign roles to all other members, and can delete the workspace. There is one Owner per workspace, though ownership can be transferred.
+  </Card>
+  <Card title="Admin" icon="shield-halved">
+    Admins can invite and remove team members, manage integrations and connected accounts, create and edit all workflows, and view execution logs across the workspace. Admins cannot change billing settings or transfer ownership.
+  </Card>
+  <Card title="Member" icon="user">
+    Members can create, edit, and run workflows they own or that have been explicitly shared with them. They can view execution logs for their own workflows. Members cannot manage team settings or access other members' private workflows.
+  </Card>
+  <Card title="Viewer" icon="eye">
+    Viewers have read-only access to workflows that have been shared with them. They can review workflow configurations and execution logs but cannot make edits, trigger manual runs, or create new workflows.
+  </Card>
+</CardGroup>
+
+## Sharing Workflows
+
+By default, a workflow is visible only to its creator and workspace Admins. To share a workflow with specific teammates:
+
+1. Open the workflow in the editor.
+2. Click the **Share** button in the top-right corner.
+3. Search for team members by name or email and select the access level — **Can Edit** or **Can View** — for each person.
+4. Click **Save**.
+
+Shared team members will see the workflow appear in their **Shared with Me** section of the workflow library.
+
+<Tip>
+  Use workflow descriptions and clear naming conventions when sharing automations with teammates. A workflow named "Sync Contacts — Salesforce to HubSpot (Daily 8am)" is far easier for a colleague to understand and safely edit than one named "New Workflow 3."
+</Tip>
+
+## Organizing Workflows with Folders
+
+As your team builds more automations, folders help keep the workflow library navigable. Create folders per team, project, or function — for example, **Marketing Automations**, **Finance Ops**, or **Customer Onboarding** — and share folder-level access with the relevant colleagues.
+
+To create a folder:
+1. In the workflow library, click **New Folder**.
+2. Name the folder and set its visibility (**Private** or **Shared**).
+3. Drag existing workflows into the folder, or create new workflows directly inside it.
+
+Members with access to a shared folder can see all workflows within it according to their workspace role.
+
+## Managing Team Permissions Over Time
+
+Team composition changes — people change roles, move to other teams, or leave the organization. Review your team's access settings regularly to ensure permissions stay accurate.
+
+- **When someone changes roles:** update their AetherFlow role in **Settings → Team** to reflect their new responsibilities.
+- **When someone leaves:** remove them from the workspace immediately. Any workflows they owned will remain in the workspace and can be reassigned to another member by an Admin.
+- **Periodically:** audit shared workflows to confirm that access is still appropriate and revoke shares that are no longer needed.
+
+<Warning>
+  Removing a team member revokes their access immediately, but it does not disable active workflow schedules or webhooks they configured. Review and reassign any business-critical workflows before or immediately after removing a member.
+</Warning>

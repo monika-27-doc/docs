@@ -1,0 +1,88 @@
+---
+title: "Get Started with AetherFlow"
+sidebarTitle: "Quick Start"
+description: "Set up your AetherFlow account, connect your first application, and build your first automated workflow — all in under fifteen minutes, right in your browser."
+---
+
+Getting AetherFlow up and running takes only a few minutes. Because AetherFlow runs entirely in the browser, there's nothing to download, install, or configure on your machine — just sign up, connect your tools, and start building. This guide walks you through every step from account creation to your first live automation.
+
+<Note>
+  AetherFlow is 100% browser-based. You do not need to install any software, agents, or plugins on your local machine or servers. Simply open [app.aetherflow.io](https://app.aetherflow.io) in any modern browser and you're ready to go.
+</Note>
+
+## Step-by-step setup
+
+<Steps>
+  <Step title="Create your account">
+    Go to [app.aetherflow.io/signup](https://app.aetherflow.io/signup) and register with your work email address. After you verify your email, AetherFlow launches an interactive product tour that introduces the four key areas of the platform:
+
+    - **Prompts** — how to describe automations in natural language
+    - **Triggers** — scheduled and event-based workflow starts
+    - **Integrations** — connecting your business applications
+    - **Workflow Builder** — the visual canvas where automations come to life
+
+    Complete the tour before moving on — it takes about three minutes and pays off quickly.
+  </Step>
+  <Step title="Connect an application">
+    Navigate to **Integrations** in the left sidebar and click **Add Integration**. Browse or search the catalog, select an application, and follow the OAuth or API-key authentication flow. AetherFlow securely stores your credentials and uses them automatically whenever a workflow interacts with that app.
+
+    <Tip>
+      Connect the application you use most often first — for example, your CRM, email platform, or project management tool — so you can build a meaningful first workflow right away.
+    </Tip>
+  </Step>
+  <Step title="Build your first workflow">
+    Open the **Workflow Builder** from the main navigation and click **New Workflow**. In the prompt field, type a plain-language description of the automation you want to create. For example:
+
+    > *"When a new row is added to my Google Sheet, create a contact in HubSpot and send me a Slack notification."*
+
+    AetherFlow's AI parses your description and generates a sequence of workflow steps. Review each step carefully:
+
+    - Confirm that the trigger matches the event you intend to act on.
+    - Check that data fields are mapped correctly between applications.
+    - Add conditional branches if the workflow should behave differently in certain situations.
+
+    <Info>
+      You can edit any generated step manually. AetherFlow treats the AI output as a starting point — you always have full control over the final workflow configuration.
+    </Info>
+  </Step>
+  <Step title="Test the workflow">
+    Click **Run Test** to execute the workflow against a real or sample event. The test runner shows each step's status, input data, and output data in real time. If a step fails or produces unexpected results, inspect the log details, adjust the configuration, and re-run.
+
+    <Warning>
+      Test your workflow thoroughly before activating it for production use. Some actions — such as sending emails or creating records in your CRM — execute against live systems during testing unless you configure a sandbox environment.
+    </Warning>
+  </Step>
+  <Step title="Activate and monitor">
+    Once the test confirms the workflow behaves correctly, click **Activate**. AetherFlow immediately begins listening for the trigger you defined. Visit the **Monitoring** dashboard to watch executions in real time, review historical run logs, and access performance analytics.
+  </Step>
+</Steps>
+
+## Generate API credentials
+
+If you want to trigger workflows programmatically or integrate AetherFlow into your own applications, generate API credentials from your account settings.
+
+1. Click your avatar in the top-right corner and select **Account Settings**.
+2. Open the **API & Webhooks** tab.
+3. Click **Generate New API Key**, give it a descriptive label, and set the appropriate permission scope.
+4. Copy the key immediately — AetherFlow displays it only once for security reasons.
+
+Store your API key in a secrets manager or environment variable and never commit it to source control.
+
+## Best practices for new users
+
+Keep these principles in mind as you build your first automations — they'll save you time and prevent common mistakes.
+
+<CardGroup cols={2}>
+  <Card title="Start small" icon="seedling" href="/concepts/workflows">
+    Build simple, single-step workflows before adding multiple apps, branches, or loops. Complexity is easier to manage once you understand how data flows through AetherFlow.
+  </Card>
+  <Card title="Test before going live" icon="flask" href="/monitoring/analytics">
+    Always run at least one test execution before activating a workflow. Catching errors in test mode is far less disruptive than discovering them in production.
+  </Card>
+  <Card title="Read your execution logs" icon="scroll" href="/monitoring/analytics">
+    Execution logs record every step's input and output. Make a habit of reviewing them after each run — they're the fastest way to understand how your workflow is actually performing.
+  </Card>
+  <Card title="Iterate with analytics" icon="chart-line" href="/monitoring/analytics">
+    Use the built-in analytics dashboard to track success rates, error trends, and throughput. Let data guide your refinements rather than guessing what needs to change.
+  </Card>
+</CardGroup>
