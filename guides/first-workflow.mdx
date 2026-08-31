@@ -10,65 +10,6 @@ AetherFlow transforms plain-language descriptions into fully executable workflow
   Start with a simple, tightly scoped use case — for example, "send me a Slack message whenever a new row is added to my Google Sheet." Nailing a small workflow first teaches you how AetherFlow interprets your prompts and gives you a solid foundation before you tackle multi-step automations.
 </Tip>
 
-<Steps>
-
-  ### Describe your automation
-
-  Open AetherFlow in your browser — no local installation is required. In the **New Workflow** panel, type a plain-language description of what you want to automate. Be explicit about the trigger (what starts the workflow), the outcome (what should happen), and any important constraints.
-
-  Here is an example prompt that follows those guidelines:
-
-  ```plaintext
-  When a new support ticket is created in Zendesk with a priority of "High",
-  add a row to the "Open Tickets" Google Sheet with the ticket ID, subject,
-  and creation timestamp, then send a Slack message to #support-alerts with
-  a link to the ticket.
-  ```
-
-  After you submit the prompt, AetherFlow's AI engine parses your description and generates a structured workflow plan. This usually takes just a few seconds.
-
-  ### Review the generated steps
-
-  AetherFlow displays the generated steps as an ordered list before building anything. Read through each step carefully and verify that:
-
-  - The trigger matches the event you described.
-  - Every action appears in the correct sequence.
-  - Field mappings (such as ticket ID → Sheet column) look accurate.
-
-  If a step is missing or misinterpreted, edit the relevant step inline or refine your original prompt and regenerate. You can iterate on the description as many times as you need before moving forward.
-
-  ### Configure integrations
-
-  For each third-party service in your workflow — such as Zendesk, Google Sheets, or Slack — AetherFlow will prompt you to connect your account. Select an existing connection from the dropdown or click **Add Connection** to authorize a new one.
-
-  If you are using the AetherFlow API, generate your credentials from **Account Settings → API Keys** and supply them in the connection dialog.
-
-  <Note>
-    AetherFlow stores credentials using encrypted OAuth tokens or API key vaults. You never need to paste a password directly into a workflow step.
-  </Note>
-
-  ### Test the workflow
-
-  Before activating, run the workflow against representative sample data to confirm it behaves exactly as expected. Click **Run Test** in the workflow editor and either let AetherFlow use its built-in sample event or supply your own test payload.
-
-  Review the **Test Results** panel to inspect:
-
-  - Whether each step passed or failed.
-  - The exact data values that flowed between steps.
-  - Any warnings about missing fields or misconfigured mappings.
-
-  Resolve every failure and re-run the test until all steps show a green status.
-
-  ### Activate the workflow
-
-  Once the test results match your expected behavior, click **Activate**. AetherFlow immediately begins listening for real trigger events. You can monitor live executions from the **Execution History** tab at any time.
-
-  <Info>
-    You can pause or deactivate a workflow at any time without losing its configuration. Deactivated workflows retain their full step history and can be reactivated in one click.
-  </Info>
-
-</Steps>
-
 ## What's next?
 
 Now that your first workflow is live, explore these resources to go further:
@@ -77,6 +18,7 @@ Now that your first workflow is live, explore these resources to go further:
   <Card title="Advanced Features" icon="sliders" href="/guides/advanced-features">
     Add conditional branching, scheduled triggers, error handling, and reusable patterns to your workflows.
   </Card>
+
   <Card title="Best Practices" icon="circle-check" href="/guides/best-practices">
     Learn how to write precise prompts, test safely, and monitor automations over time.
   </Card>
